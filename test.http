@@ -1,0 +1,39 @@
+### meta data
+
+GET http://localhost:4004/odata/v4/b79-capm/$metadata
+
+### query operations
+
+GET http://localhost:4004/odata/v4/b79-capm/Products
+
+
+### READ operation
+
+GET http://localhost:4004/odata/v4/b79-capm/Products(818975)
+
+
+### CREATE operation
+
+POST http://localhost:4004/odata/v4/b79-capm/Products
+Content-Type: application/json
+
+{
+  "prdId": "818980",
+  "name": "airpods pro",
+  "desc": "airpods pro 2nd gen",
+  "price": 50000,
+  "discount": 6,
+  "stock": 4
+}
+
+### UPDATE operation
+
+PATCH http://localhost:4004/odata/v4/b79-capm/Products(818980)
+Content-Type: application/json
+
+{
+  "stock": 10
+}
+
+### DELETE operation
+DELETE http://localhost:4004/odata/v4/b79-capm/Products(818980)
