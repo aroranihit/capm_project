@@ -12,13 +12,15 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-productsmgmt": "cds watch --open com.demo.productsmgmt/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-productsmgmt": "cds watch --open com.demo.productsmgmt/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-ordermgmt": "cds watch --open com.demo.ordermgmt/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
     "app/*"
   ],
   "sapux": [
-    "app/productsmgmt"
+    "app/productsmgmt",
+    "app/ordermgmt"
   ]
 }
