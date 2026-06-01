@@ -18,5 +18,13 @@ service ProductMgmtService {
         end as statusCriticality :  String,
 
     }
+    actions{
+
+      @Common.SideEffects: {TargetProperties: ['stock', 'status', 'statusCriticality']}
+      action AddStock(stock: Integer @Common.Label: 'New Stock') returns String; //defination of action to add stock
+
+       @Common.SideEffects: {TargetProperties: ['discount']}
+      action ApplyDiscount(discount: Integer @Common.Label: 'Discount') returns String;
+    }
    
 }

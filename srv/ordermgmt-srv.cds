@@ -4,7 +4,10 @@ service OrderMgmtService {
 
   entity Products as projection on b79db.Products;
   @odata.draft.enabled
-  entity Orders as projection on b79db.Orders;
+    @Common.SideEffects: {SourceEntities:['items'],TargetProperties: ['netPrice']}
+   entity Orders as projection on b79db.Orders;
+
+  @Common.SideEffects: {SourceProperties:['unitPrice', 'quantity'],TargetProperties: ['totalPrice']}
   entity OrderItems as projection on b79db.OrderItems;
 
 

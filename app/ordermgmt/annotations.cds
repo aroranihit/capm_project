@@ -97,10 +97,6 @@ annotate service.Orders with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : netPrice,
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : customerName,
             },
             {
@@ -116,6 +112,10 @@ annotate service.Orders with @(
                 $Type : 'UI.DataField',
                 Value : storName,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : netPrice,
+            },
         ],
     },
 );
@@ -124,14 +124,46 @@ annotate service.Orders with {
     ID @Common.Label : 'Order ID';
     customerName @Common.Label : 'Customer Name';
     storName @Common.Label : 'Store Name';
-    netPrice @Common.Label : 'Net Price';
+    netPrice @(
+        Common.Label : 'Net Price',
+        Common.FieldControl : #ReadOnly,
+    );
 };
 
 annotate service.OrderItems with{
 
     ID @Common.Label : 'ID';
     order @Common.Label : 'Order ID';
-    product @Common.Label : 'Product ID';
+    product @(
+        Common.Label : 'Product ID',
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Products',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : product_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name',
+                },
+                {
+                    $Type : 'Common.ValueListParameterOut',
+                    ValueListProperty : 'price',
+                    LocalDataProperty : unitPrice,
+                },
+                {
+                    $Type : 'Common.ValueListParameterOut',
+                    ValueListProperty : 'discount',
+                    LocalDataProperty : discount,
+                },
+            ],
+            Label : 'Select Product',
+        },
+        Common.ValueListWithFixedValues : false,
+    );
     unitPrice @Common.Label : 'Unit Price';
     quantity @Common.Label : 'Quantity';
     discount @Common.Label : 'Discount';
