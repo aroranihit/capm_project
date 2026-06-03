@@ -13,7 +13,8 @@
   "scripts": {
     "start": "cds-serve",
     "watch-productsmgmt": "cds watch --open com.demo.productsmgmt/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-ordermgmt": "cds watch --open com.demo.ordermgmt/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-ordermgmt": "cds watch --open com.demo.ordermgmt/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-storeanalytics": "cds watch --open com.demo.storeanalytics/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
