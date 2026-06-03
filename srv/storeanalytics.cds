@@ -4,6 +4,7 @@ service MyStoreAnalyticsService{
 
 
     // storewise sales entity to calculate total sales for each store
+    @requires:'Owner'
     entity StoreWiseSales as
         select from b79db.Orders{
             key storName,
@@ -12,14 +13,17 @@ service MyStoreAnalyticsService{
         group by storName;
 
     // productwise sales entity to calculate total sales for each product
+    @requires:'Owner'
     entity ProductWiseSales as
         select from b79db.OrderItems{
             key product.ID as productID,
             product.name as productName,
             cast (sum(totalPrice) as Decimal(9,2)) as totalSales,
         }
-        group by product.ID , product.name;    
+        group by product.ID , product.name;   
 
+
+@requires:'Owner'
     entity LowStockProducts as
         select from b79db.Products{
             key ID,
@@ -28,6 +32,7 @@ service MyStoreAnalyticsService{
         }
         where stock < 15; // threshold for low stock can be adjusted as needed
 
+@requires:'Owner'
     entity Top3Orders as
         select from b79db.Orders{
             key ID,

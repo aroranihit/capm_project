@@ -3,6 +3,7 @@ using { b79capm.db as b79db } from '..//db/schema';
 service ProductMgmtService {
 
     @odata.draft.enabled
+    @requires:'Owner'
     entity Products as projection on b79db.Products{
       *,
       case
@@ -21,7 +22,8 @@ service ProductMgmtService {
     actions{
 
       @Common.SideEffects: {TargetProperties: ['stock', 'status', 'statusCriticality']}
-      action AddStock(stock: Integer @Common.Label: 'New Stock') returns String; //defination of action to add stock
+      @requires:'Owner'
+        action AddStock(stock: Integer @Common.Label: 'New Stock') returns String; //defination of action to add stock
 
        @Common.SideEffects: {TargetProperties: ['discount']}
       action ApplyDiscount(discount: Integer @Common.Label: 'Discount') returns String;

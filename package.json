@@ -23,5 +23,36 @@
   "sapux": [
     "app/productsmgmt",
     "app/ordermgmt"
-  ]
-}
+  ],
+  "cds":{
+    "requires":
+    {
+      "auth": {
+        "[development]":{
+          "kind" :"mocked",
+          "users": {
+            "nihit":{
+              "password":"nihit",
+              "roles": ["Owner"],
+              "attr":{
+                "storName":[
+                  "Apple",
+                  "GolabhaiStore",
+                  "PriyankaGeneralstore"
+                ] 
+              }
+            },
+            "syed":{
+              "password":"syed",
+              "roles": ["Employee"],
+               "attr":{
+                "storName":[
+                  "GolabhaiStore"
+                  
+                ] 
+              }
+            }
+        }
+    }
+  }
+}}}

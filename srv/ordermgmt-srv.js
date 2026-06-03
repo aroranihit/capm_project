@@ -1,11 +1,18 @@
 const cds = require('@sap/cds');
 const { SELECT } = require('@sap/cds/lib/ql/cds-ql');
+const req = require('express/lib/request');
 
 
 module.exports = class OrderMgmtService extends cds.ApplicationService {
     init() {
 
         const{Orders,OrderItems,Products} = cds.entities('OrderMgmtService');
+
+        //handler to fill store name automatically based on logged in user
+        this.before('CREATE',Orders.drafts,async req => {
+            req.data.storName = req.user.attr.storName[0];
+        }
+        );
 
         this.after("PATCH",OrderItems.drafts,async(data,req) => {
             const {ID} = data;
